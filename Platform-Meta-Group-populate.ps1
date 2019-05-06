@@ -73,7 +73,7 @@ function ExtractVariablesIntoList {
     $envVars | ? Key -Match "^[a-zA-z]+(?=-$($envVarSuffix))" | % {
         if ($parseValue) { $bool= [System.Convert]::ToBoolean($_.Value)} else {$bool = $false}
 
-        $list.Add((New-Object 'System.Tuple[string,bool]' -ArgumentList $Matches[0],$bool))    
+        $list.Add((New-Object 'System.Tuple[string,bool]' -ArgumentList $Matches[0].ToLowerInvariant(),$bool))    
     }
 }
 
